@@ -34,6 +34,7 @@ function generateReport() {
         let successTexts = document.getElementsByClassName("success-text");
         successTexts[0].style.display = "none";
     }, 3000)
+    loadBooks();
 }
 
 function loadBookCollections() {
@@ -45,6 +46,33 @@ function loadBookCollections() {
         })
 }
 
+function loadBooks() {
+    let bookCollectionId = document.getElementById("bookcollection").options.selectedIndex;
+    fetch('/book/get/' + bookCollectionId, { mode: 'no-cors' })
+        .then((response) => response.json())
+        .then((json) => fillTableWithBooks(json));
+}
+
+function fillTableWithBooks(json) {
+    let table = document.getElementById("report-table");
+    for (let i = 0; i < json.length; i++) {
+        let row = document.createElement('tr');
+        let idCell = document.createElement('td');
+        idCell.textContent = json[i].id;
+        let titleCell = document.createElement('td');
+        titleCell.textContent = json[i].title;
+        let authorCell = document.createElement('td');
+        authorCell.textContent = json[i].author;
+        let publisherCell = document.createElement('td');
+        publisherCell.textContent = json[i].publisher;
+        let publicationDateCell = document.createElement('td');
+        publicationDateCell.textContent = json[i].publicationDate;
+        row.append(idCell, titleCell, authorCell, publisherCell, publicationDateCell);
+        table.append(row);
+    }
+}
+
 function saveReportToFile() {
     alert("Raport zapisany!")
 }
+
