@@ -61,13 +61,22 @@
             <div id="report-generated-container">
                 <h4 class="success-text">Raport został wygenerowany!</h4>
                 <h3>Zestawienie ...</h3>
-                <table id="report-table">
+                <table id="report-books-table">
                     <tr>
                         <th>Id</th>
                         <th>Tytuł</th>
                         <th>Autor</th>
                         <th>Wydawnictwo</th>
                         <th>Data wydania</th>
+                    </tr>
+                </table>
+                <table id="report-bookcollections-table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Typ</th>
+                        <th>Wielkość</th>
+                        <th>Pracownik odpowiedzialny</th>
                     </tr>
                 </table>
                 <button class="save-button" onclick="saveReportToFile()">Zapisz do pliku...</button>

@@ -3,6 +3,7 @@ package com.developol.stocktaking.controller;
 import com.developol.stocktaking.entity.Book;
 import com.developol.stocktaking.entity.BookCollection;
 import com.developol.stocktaking.repository.BookCollectionRepository;
+import com.developol.stocktaking.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,19 +20,29 @@ import java.util.Optional;
 @RequestMapping(path = "/book")
 public class BookController {
 
-    private BookCollectionRepository repository;
+    private BookRepository bookRepository;
+    private BookCollectionRepository bookCollectionRepository;
 
     @Autowired
     public BookController(
-            BookCollectionRepository repository
+            BookRepository bookRepository,
+            BookCollectionRepository bookCollectionRepository
     ) {
-        this.repository = repository;
+        this.bookRepository = bookRepository;
+        this.bookCollectionRepository = bookCollectionRepository;
+    }
+
+    @GetMapping("/getAll")
+    public List<Book> getAllBooks() {
+        List<Book> list = new ArrayList<>();
+        bookRepository.findAll().forEach(list::add);
+        return list;
     }
 
     @Transactional
     @GetMapping("/get/{id}")
     public List<Book> getBooksByBookCollection(@PathVariable Long id) {
-        Optional<BookCollection> bookCollectionOptional = repository.findById(id);
+        Optional<BookCollection> bookCollectionOptional = bookCollectionRepository.findById(id);
         BookCollection bookCollection;
         if (bookCollectionOptional.isPresent()) {
             bookCollection = bookCollectionOptional.get();
