@@ -2,15 +2,13 @@
     <head>
         <title>Inwentaryzacja - raporty</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="reports.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
         <header>
             <h1>System do inwentaryzacji</h1>
         </header>
-        <section>
-            <h2>Raporty</h2>
-        </section>
         <aside>
             <div class="menu-flexbox">
                 <div class="menu-flexbox-item">
@@ -33,5 +31,55 @@
                 </div>
             </div>
         </aside>
+        <section>
+            <h2>Raporty</h2>
+            <div id="report-type-container">
+                <h3>Wybierz typ raportu:</h3>
+                <select id="report-type">
+                    <option>Zestawienie książek należących do danego księgozbioru/Biblioteki</option>
+                    <option>Zestawienie książek aktualnie wypożyczonych w danym księgozbiorze/Bibliotece</option>
+                    <option>Zestawienie księgozbiorów należących do zasobów Biblioteki</option>
+                    <!--.options.selectedInput-->
+                </select>
+                <button type="button" class="next-button" onclick="onReportTypeSent()">Dalej</button>    
+            </div>
+            <div id="resource-type-container">
+                <h3>Wybierz typ zasobu, dla którego ma zostać wygenerowany raport:</h3>
+                <select id="resource-type">
+                    <option>pojedynczy księgozbiór</option>
+                    <option>cała biblioteka</option>
+                </select>
+                <button type="button" class="next-button" onclick="onResourceTypeSent()">Dalej</button>  
+            </div>
+            <div id="bookcollection-container">
+                <h3>Wybierz księgozbiór, dla którego ma zostać wygenerowany raport:</h3>
+                <select id="bookcollection">
+                    ...                    
+                </select>
+                <button type="button" class="next-button" onclick="onBookCollectionSent()">Wygeneruj</button>  
+            </div>
+            <div id="report-generated-container">
+                <h4 class="success-text">Raport został wygenerowany!</h4>
+                <h3>Zestawienie ...</h3>
+                <table class="report-table">
+                    <tr>
+                        <th>elo</th>
+                        <th>asda</th>
+                    </tr>
+                    <tr>
+                        <td>asd</td>
+                        <td>234</td>
+                    </tr>
+                    <tr>
+                        <td>asd</td>
+                        <td>234</td>
+                    </tr>                    <tr>
+                        <td>asd</td>
+                        <td>234</td>
+                    </tr>
+                </table>
+                <button class="save-button" onclick="saveReportToFile()">Zapisz do pliku...</button>
+            </div>
+        </section>
     </body>
 </html>
