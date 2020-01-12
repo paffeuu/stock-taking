@@ -15,6 +15,7 @@ function onResourceTypeSent() {
     if (document.getElementById("resource-type").options.selectedIndex == 0) {
         let bookCollectionContainer = document.getElementById("bookcollection-container");
         bookCollectionContainer.style.display = "initial";
+        loadBookCollections();
     } else {
         generateReport();
     }
@@ -33,6 +34,15 @@ function generateReport() {
         let successTexts = document.getElementsByClassName("success-text");
         successTexts[0].style.display = "none";
     }, 3000)
+}
+
+function loadBookCollections() {
+    fetch('/bookCollection/getAll', { mode: 'no-cors'})
+        .then((response) => response.json())
+        .then((json) => {
+            let bookCollectionsSelect = document.getElementById("bookcollection");
+            json.forEach((entry) => bookCollectionsSelect.options.add(new Option(entry.name)));
+        })
 }
 
 function saveReportToFile() {

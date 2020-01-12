@@ -1,0 +1,32 @@
+package com.developol.stocktaking.controller;
+
+import com.developol.stocktaking.entity.BookCollection;
+import com.developol.stocktaking.repository.BookCollectionRepository;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@RestController
+@RequestMapping(path = "/bookCollection")
+public class BookCollectionController {
+
+    private BookCollectionRepository repository;
+
+    public BookCollectionController(
+            BookCollectionRepository repository
+    ) {
+        this.repository = repository;
+    }
+
+    @GetMapping(path = "/getAll")
+    public List<BookCollection> getAllBookCollections() {
+        List<BookCollection> list = new ArrayList<>();
+        repository.findAll().forEach(list::add);
+        return list;
+    }
+}
