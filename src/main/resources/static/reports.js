@@ -40,10 +40,16 @@ function generateReportBooks(forLibrary) {
     onReportGenerated();
     let reportBooksTable = document.getElementById("report-books-table");
     reportBooksTable.style.display = "initial";
-    if (forLibrary) {
-        loadAllBooks();
+    let checkedOut;
+    if (document.getElementById("report-type").options.selectedIndex == 0) {
+        checkedOut = false;
     } else {
-        loadBooksByBookCollectionId();
+        checkedOut = true;
+    }
+    if (forLibrary) {
+        loadAllBooks(checkedOut);
+    } else {
+        loadBooksByBookCollectionId(checkedOut);
     }
 }
 
@@ -55,7 +61,7 @@ function generateReportBookCollections() {
 }
 
 function loadBookCollections(table) {
-    fetch('/bookCollection/getAll', { mode: 'no-cors'})
+    fetch('/bookCollection/get', { mode: 'no-cors'})
         .then((response) => response.json())
         .then((json) => {
             if (table) {
@@ -66,15 +72,27 @@ function loadBookCollections(table) {
         })
 }
 
-function loadBooksByBookCollectionId() {
+function loadBooksByBookCollectionId(checkedOut) {
     let bookCollectionId = document.getElementById("bookcollection").options.selectedIndex;
-    fetch('/book/get/' + bookCollectionId, { mode: 'no-cors' })
+    let url;
+    if (checkedOut) {
+        url = '/book/get/' + bookCollectionId + '/checkedOut/';
+    } else {
+        url = '/book/get/'
+    }
+    fetch(url, { mode: 'no-cors' })
         .then((response) => response.json())
         .then((json) => fillTableWithBooks(json));
 }
 
-function loadAllBooks() {
-    fetch('/book/getAll', { mode: 'no-cors' })
+function loadAllBooks(checkedOut) {
+    let url;
+    if (checkedOut) {
+        url = '/book/get/checkedOut';
+    } else {
+        url = '/book/get'
+    }
+    fetch(url, { mode: 'no-cors' })
         .then((response) => response.json())
         .then((json) => fillTableWithBooks(json));
 }
@@ -98,7 +116,9 @@ function fillTableWithBooks(json) {
         publisherCell.textContent = json[i].publisher;
         let publicationDateCell = document.createElement('td');
         publicationDateCell.textContent = json[i].publicationDate;
-        row.append(idCell, titleCell, authorCell, publisherCell, publicationDateCell);
+        let checkedOutCell = document.createElement('td');
+        checkedOutCell.textContent = json[i].checkedOut;
+        row.append(idCell, titleCell, authorCell, publisherCell, publicationDateCell, checkedOutCell);
         table.append(row);
     }
 }

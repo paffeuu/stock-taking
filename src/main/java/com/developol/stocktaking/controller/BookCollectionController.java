@@ -21,7 +21,7 @@ public class BookCollectionController {
         this.repository = repository;
     }
 
-    @GetMapping(path = "/getAll")
+    @GetMapping(path = "/get")
     public List<BookCollection> getAllBookCollections() {
         List<BookCollection> list = new ArrayList<>();
         repository.findAll().forEach(list::add);

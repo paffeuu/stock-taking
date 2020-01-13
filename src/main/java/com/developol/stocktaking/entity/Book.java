@@ -17,6 +17,7 @@ public class Book {
     private String author;
     private String publisher;
     private int publicationDate;
+    private boolean checkedOut;
 
     public Long getId() {
         return id;
@@ -56,5 +57,13 @@ public class Book {
 
     public void setPublicationDate(int publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
     }
 }

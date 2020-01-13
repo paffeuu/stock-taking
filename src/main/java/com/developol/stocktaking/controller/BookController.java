@@ -32,7 +32,7 @@ public class BookController {
         this.bookCollectionRepository = bookCollectionRepository;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get")
     public List<Book> getAllBooks() {
         List<Book> list = new ArrayList<>();
         bookRepository.findAll().forEach(list::add);
@@ -48,6 +48,28 @@ public class BookController {
             bookCollection = bookCollectionOptional.get();
             List<Book> bookList = new ArrayList<>(bookCollection.getBooks());
             bookList.sort(Comparator.comparingLong(Book::getId));
+            return bookList;
+        }
+        return new ArrayList<>();
+    }
+
+    @GetMapping("/get/checkedOut")
+    public List<Book> getCheckedOutBooks() {
+        List<Book> list = new ArrayList<>();
+        bookRepository.findAllByCheckedOut(true).forEach(list::add);
+        return list;
+    }
+
+    @Transactional
+    @GetMapping("/get/{id}/checkedOut")
+    public List<Book> getCheckedOutBooksByBookCollection(@PathVariable Long id) {
+        Optional<BookCollection> bookCollectionOptional = bookCollectionRepository.findById(id);
+        BookCollection bookCollection;
+        if (bookCollectionOptional.isPresent()) {
+            bookCollection = bookCollectionOptional.get();
+            List<Book> bookList = new ArrayList<>(bookCollection.getBooks());
+            bookList.sort(Comparator.comparingLong(Book::getId));
+            bookList.removeIf(book -> !book.isCheckedOut());
             return bookList;
         }
         return new ArrayList<>();
