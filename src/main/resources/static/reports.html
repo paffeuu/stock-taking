@@ -39,7 +39,6 @@
                     <option>Zestawienie książek należących do danego księgozbioru/Biblioteki</option>
                     <option>Zestawienie książek aktualnie wypożyczonych w danym księgozbiorze/Bibliotece</option>
                     <option>Zestawienie księgozbiorów należących do zasobów Biblioteki</option>
-                    <!--.options.selectedInput-->
                 </select>
                 <button type="button" class="next-button" onclick="onReportTypeSent()">Dalej</button>    
             </div>
@@ -60,7 +59,7 @@
             </div>
             <div id="report-generated-container">
                 <h4 class="success-text">Raport został wygenerowany!</h4>
-                <h3>Zestawienie ...</h3>
+                <h3 id="table-label"></h3>
                 <table id="report-books-table">
                     <tr>
                         <th>Id</th>

@@ -1,3 +1,11 @@
+const reportTypes = [
+    "Zestawienie książek należących do księgozbioru - ",
+    "Zestawienie książek należących do biblioteki",
+    "Zestawienie książek aktualnie wypożyczonych w księgozbiorze - ",
+    "Zestawienie książek aktualnie wypożyczonych w bibliotece",
+    "Zestawienie księgozbiorów należących do zasobów biblioteki"
+];
+
 function onReportTypeSent() {
     let reportTypeContainer = document.getElementById("report-type-container");
     reportTypeContainer.style.display = "none";
@@ -27,9 +35,11 @@ function onBookCollectionSent() {
     generateReportBooks(false);
 }
 
-function onReportGenerated() {
+function onReportGenerated(type, bookCollectionName) {
     let reportGeneratedContainer = document.getElementById("report-generated-container");
     reportGeneratedContainer.style.display = "initial";
+    let tableLabel = document.getElementById("table-label");
+    tableLabel.textContent = reportTypes[type] + bookCollectionName;
     setTimeout(() => {
         let successTexts = document.getElementsByClassName("success-text");
         successTexts[0].style.display = "none";
@@ -37,24 +47,35 @@ function onReportGenerated() {
 }
 
 function generateReportBooks(forLibrary) {
-    onReportGenerated();
     let reportBooksTable = document.getElementById("report-books-table");
     reportBooksTable.style.display = "initial";
-    let checkedOut;
-    if (document.getElementById("report-type").options.selectedIndex == 0) {
-        checkedOut = false;
-    } else {
-        checkedOut = true;
+    let bookCollectionName;
+    if (!forLibrary) {
+        let bookCollectionSelect = document.getElementById("bookcollection");
+        let index = bookCollectionSelect.options.selectedIndex;
+        bookCollectionName = bookCollectionSelect.options[index].textContent;
     }
-    if (forLibrary) {
-        loadAllBooks(checkedOut);
+    if (document.getElementById("report-type").options.selectedIndex == 0) {
+        if (forLibrary) {
+            onReportGenerated(1, "");
+            loadAllBooks(false);
+        } else {
+            onReportGenerated(0, bookCollectionName);
+            loadBooksByBookCollectionId(false);
+        }
     } else {
-        loadBooksByBookCollectionId(checkedOut);
+        if (forLibrary) {
+            onReportGenerated(3, "");
+            loadAllBooks(true);
+        } else {
+            onReportGenerated(2, bookCollectionName);
+            loadBooksByBookCollectionId(true);
+        }
     }
 }
 
 function generateReportBookCollections() {
-    onReportGenerated();
+    onReportGenerated(4, "");
     let reportBookCollectionsTable = document.getElementById("report-bookcollections-table");
     reportBookCollectionsTable.style.display = "initial";
     loadBookCollections(true);
