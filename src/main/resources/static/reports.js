@@ -166,6 +166,32 @@ function fillTableWithBookCollections(json) {
 }
 
 function saveReportToFile() {
-    alert("Raport zapisany!")
+    let table;
+    let booksTable = document.getElementById("report-books-table");
+    if (booksTable.style.display != "") {
+        table = booksTable;
+    } else {
+        table = document.getElementById("report-bookcollections-table");
+    }
+    let label = document.getElementById("table-label");
+    let html = label.outerHTML + table.outerHTML
+    fetch('/print.css', {mode: 'no-cors'})
+        .then(resp => resp.text())
+        .then(tableStyle => {
+            html = '<html><head><style>' + tableStyle + '</style><meta charset="UTF-8"></head><body>' 
+                + html + "</body></html>"
+            let file = new Blob([html], {type: "html"});
+            let link = document.createElement("a");
+            let url = URL.createObjectURL(file);
+            link.href = url;
+            link.download = "report.html";
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(function() {
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);  
+            }, 0);
+        
+            alert("Raport zapisany!");
+        });
 }
-
