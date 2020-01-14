@@ -46,7 +46,7 @@ a:hover {
     color: gray;
 }
 
-select {
+.report-select {
     width: 50%;
 }
 
@@ -62,7 +62,8 @@ select {
     width: 150px;
 }
 
-#resource-type-container, #bookcollection-container, #report-generated-container {
+#resource-type-container, #bookcollection-container, #report-generated-container, 
+#search-form-container {
     display: none;
 }
 
@@ -74,9 +75,9 @@ table {
     border: 3px solid black;
     border-collapse: collapse;
     float: left;
-    /* width:70%; */
-    /* left:25%; */
-    /* right:25%; */
+    width:70%; 
+    left:25%;
+    right:25%;
     margin: 30px;
 }
 
@@ -98,4 +99,24 @@ table tr:nth-child(even) {
 
 #report-books-table, #report-bookcollections-table {
     display: none;
+}
+
+.menu-list {
+    margin: 40px 0 40px 80px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.menu-list li {
+    margin: 15px;
+}
+
+.book-input {
+    width: 200px;
+}
+
+.form-item {
+    margin: 20px;
+    width: 300px;
+    border: 1px black solid;
 }

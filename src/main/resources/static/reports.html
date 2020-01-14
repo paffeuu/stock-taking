@@ -35,7 +35,7 @@
             <h2>Raporty</h2>
             <div id="report-type-container">
                 <h3>Wybierz typ raportu:</h3>
-                <select id="report-type">
+                <select class="report-select" id="report-type">
                     <option>Zestawienie książek należących do danego księgozbioru/Biblioteki</option>
                     <option>Zestawienie książek aktualnie wypożyczonych w danym księgozbiorze/Bibliotece</option>
                     <option>Zestawienie księgozbiorów należących do zasobów Biblioteki</option>
@@ -44,7 +44,7 @@
             </div>
             <div id="resource-type-container">
                 <h3>Wybierz typ zasobu, dla którego ma zostać wygenerowany raport:</h3>
-                <select id="resource-type">
+                <select class="report-select" id="resource-type">
                     <option>pojedynczy księgozbiór</option>
                     <option>cała biblioteka</option>
                 </select>
@@ -52,7 +52,7 @@
             </div>
             <div id="bookcollection-container">
                 <h3>Wybierz księgozbiór, dla którego ma zostać wygenerowany raport:</h3>
-                <select id="bookcollection">
+                <select id="bookcollection"  class="report-select">
                                      
                 </select>
                 <button type="button" class="next-button" onclick="onBookCollectionSent()">Wygeneruj</button>  

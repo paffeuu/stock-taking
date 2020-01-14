@@ -2,6 +2,7 @@
     <head>
         <title>Inwentaryzacja - książki</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="books.js"></script>
         <meta charset="UTF-8">
     </head>
     <body>
@@ -32,6 +33,113 @@
         </aside>
         <section>
             <h2>Książki</h2>
+            <div id="menu-list-container">
+                <ul class="menu-list">
+                    <li><a href="#">Przeglądaj książki</a></li>
+                    <li><a href="#" onclick="onSearchBooksClicked()">Wyszukaj książkę</a></li>
+                    <li><a href="#">Dodaj nową książkę</a></li>
+                </ul>
+            </div>
+            <div id="search-form-container">
+                <h3>Wyszukaj książkę:</h3>
+                <form>
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Tytuł książki</label>
+                            </td>
+                            <td>
+                                <input type="text" class="book-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Autor książki</label>
+                            </td>
+                            <td>
+                                <input type="text" class="book-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Wydawnictwo</label>
+                            </td>
+                            <td>
+                                <input type="text" class="book-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Rok wydania</label>
+                            </td>
+                            <td>
+                                <input type="text" class="book-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Księgozbiór</label>
+                            </td>
+                            <td>
+                                <select id="bookcollection" class="book-input">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="button" class="next-button" onclick="onSearchButtonClicked()">Szukaj</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            
+            <!-- <div id="report-type-container">
+                <h3>Wybierz typ raportu:</h3>
+                <select id="report-type">
+                    <option>Zestawienie książek należących do danego księgozbioru/Biblioteki</option>
+                    <option>Zestawienie książek aktualnie wypożyczonych w danym księgozbiorze/Bibliotece</option>
+                    <option>Zestawienie księgozbiorów należących do zasobów Biblioteki</option>
+                </select>
+                <button type="button" class="next-button" onclick="onReportTypeSent()">Dalej</button>    
+            </div>
+            <div id="resource-type-container">
+                <h3>Wybierz typ zasobu, dla którego ma zostać wygenerowany raport:</h3>
+                <select id="resource-type">
+                    <option>pojedynczy księgozbiór</option>
+                    <option>cała biblioteka</option>
+                </select>
+                <button type="button" class="next-button" onclick="onResourceTypeSent()">Dalej</button>  
+            </div>
+            <div id="bookcollection-container">
+                <h3>Wybierz księgozbiór, dla którego ma zostać wygenerowany raport:</h3>
+                <select id="bookcollection">
+                                     
+                </select>
+                <button type="button" class="next-button" onclick="onBookCollectionSent()">Wygeneruj</button>  
+            </div>
+            <div id="report-generated-container">
+                <h4 class="success-text">Raport został wygenerowany!</h4>
+                <h3 id="table-label"></h3>
+                <table id="report-books-table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Tytuł</th>
+                        <th>Autor</th>
+                        <th>Wydawnictwo</th>
+                        <th>Data wydania</th>
+                        <th>Wypożyczona</th>
+                    </tr>
+                </table>
+                <table id="report-bookcollections-table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Typ</th>
+                        <th>Wielkość</th>
+                        <th>Pracownik odpowiedzialny</th>
+                    </tr>
+                </table>
+                <button class="save-button" onclick="saveReportToFile()">Zapisz do pliku...</button>
+            </div> -->
         </section>
     </body>
 </html>
