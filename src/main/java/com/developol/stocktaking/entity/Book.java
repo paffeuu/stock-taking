@@ -2,9 +2,7 @@ package com.developol.stocktaking.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Book {
@@ -16,8 +14,12 @@ public class Book {
     private String title;
     private String author;
     private String publisher;
-    private int publicationDate;
+    private Integer publicationDate;
     private boolean checkedOut;
+
+    @ManyToOne
+    @JoinColumn(name = "book_collection_id")
+    private BookCollection bookCollection;
 
     public Long getId() {
         return id;
@@ -51,11 +53,11 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public int getPublicationDate() {
+    public Integer getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(int publicationDate) {
+    public void setPublicationDate(Integer publicationDate) {
         this.publicationDate = publicationDate;
     }
 
@@ -65,5 +67,13 @@ public class Book {
 
     public void setCheckedOut(boolean checkedOut) {
         this.checkedOut = checkedOut;
+    }
+
+    public BookCollection getBookCollection() {
+        return bookCollection;
+    }
+
+    public void setBookCollection(BookCollection bookCollection) {
+        this.bookCollection = bookCollection;
     }
 }

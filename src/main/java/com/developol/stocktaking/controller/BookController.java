@@ -6,10 +6,7 @@ import com.developol.stocktaking.repository.BookCollectionRepository;
 import com.developol.stocktaking.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -73,5 +70,19 @@ public class BookController {
             return bookList;
         }
         return new ArrayList<>();
+    }
+
+    @Transactional
+    @PostMapping("/search")
+    public List<Book> searchBooks(@RequestBody Book book) {
+        Iterable<Book> books = bookRepository.selectAllBooksByGivenParameters(
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getPublicationDate() == null ? "" : String.valueOf(book.getPublicationDate()),
+                book.getBookCollection().getId());
+        List<Book> bookList = new ArrayList<>();
+        books.forEach(bookList::add);
+        return bookList;
     }
 }
