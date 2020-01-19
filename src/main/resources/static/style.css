@@ -63,7 +63,7 @@ a:hover {
 }
 
 #resource-type-container, #bookcollection-container, #report-generated-container, 
-#search-form-container {
+#search-form-container, #search-results-container {
     display: none;
 }
 

@@ -135,11 +135,11 @@ function fillTableWithBooks(json) {
         authorCell.textContent = json[i].author;
         let publisherCell = document.createElement('td');
         publisherCell.textContent = json[i].publisher;
-        let publicationDateCell = document.createElement('td');
-        publicationDateCell.textContent = json[i].publicationDate;
+        let publicationYearCell = document.createElement('td');
+        publicationYearCell.textContent = json[i].publicationYear;
         let checkedOutCell = document.createElement('td');
         checkedOutCell.textContent = json[i].checkedOut;
-        row.append(idCell, titleCell, authorCell, publisherCell, publicationDateCell, checkedOutCell);
+        row.append(idCell, titleCell, authorCell, publisherCell, publicationYearCell, checkedOutCell);
         table.append(row);
     }
 }

@@ -14,7 +14,7 @@ public class Book {
     private String title;
     private String author;
     private String publisher;
-    private Integer publicationDate;
+    private Integer publicationYear;
     private boolean checkedOut;
 
     @ManyToOne
@@ -53,12 +53,12 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public Integer getPublicationDate() {
-        return publicationDate;
+    public Integer getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setPublicationDate(Integer publicationDate) {
-        this.publicationDate = publicationDate;
+    public void setPublicationYear(Integer publicationYear) {
+        this.publicationYear = publicationYear;
     }
 
     public boolean isCheckedOut() {

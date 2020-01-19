@@ -11,8 +11,8 @@ public interface BookRepository extends CrudRepository<Book, Long> {
             "AND book.author LIKE CONCAT('%', :author, '%')" +
             "AND book.title LIKE CONCAT('%', :title, '%')" +
             "AND book.publisher LIKE CONCAT('%', :publisher, '%')" +
-            "AND book.publicationDate LIKE CONCAT('%', :publicationDate, '%')")
+            "AND book.publicationYear LIKE CONCAT('%', :publicationYear, '%')")
     public Iterable<Book> selectAllBooksByGivenParameters(
-            String title, String author, String publisher, String publicationDate, Long bookCollectionId
+            String title, String author, String publisher, String publicationYear, Long bookCollectionId
     );
 }

@@ -79,7 +79,7 @@ public class BookController {
                 book.getTitle(),
                 book.getAuthor(),
                 book.getPublisher(),
-                book.getPublicationDate() == null ? "" : String.valueOf(book.getPublicationDate()),
+                book.getPublicationYear() == null ? "" : String.valueOf(book.getPublicationYear()),
                 book.getBookCollection().getId());
         List<Book> bookList = new ArrayList<>();
         books.forEach(bookList::add);
